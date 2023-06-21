@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+      table, th, td {
+border: 1px solid black;
+border-collapse: collapse;
+width:500px;
+height:30px;
+}
+    </style>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<table>
+    <tr>
+        <th>Id</th>
+        <th>FirstName</th>
+        <th>LastName</th>
+        <th>email</th>
+        <th>Action</th>
+
+    </tr>
+
+    <tr th:object="${user}">
+        <td th:utext="${user.getId()}">Id</td>
+        <td th:utext="${user.getFirstName()}">FirstName</td>
+        <td th:utext="${user.getLastName()}">LastName</td>
+        <td th:utext="${user.getEmail()}">email</td>
+        <td><form  action="#"  th:action="@{/logout}" method="get">
+            <input type="submit" value="Logout"/>
+    </form></td>
+    </tr>
+
+
+
+</table>
+</body>
+</html>

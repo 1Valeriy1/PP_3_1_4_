@@ -1,0 +1,40 @@
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>User</title>
+</head>
+<body>
+<div>
+  <h2>Update User</h2>
+  <form id="formNewUser" name="formNewUser" th:align="center"
+        form action="#" th:action="@{/admin/update}" th:object="${user}"
+        method="POST">
+    <input type="hidden" name="_method" value="put">
+
+    <input type="hidden" th:field="*{id}" />
+
+    <input type="text" th:field="*{firstName}"
+           placeholder="Name">
+    <input type="text" th:field="*{lastName}"
+           placeholder="LastName">
+    <input type="text" th:field="*{email}"
+           placeholder="Email">
+    <input type="text" th:field="*{password}"
+           placeholder="Password">
+    <input type="text" th:field="*{roles}"
+           placeholder="Roles">
+
+    <button type="submit"> Update User </button>
+
+  </form>
+
+  <hr>
+
+  <a th:href = "@{/admin}"> Back to User List</a>
+</div>
+
+<form  action="#"  th:action="@{/logout}" method="get">
+  <input type="submit" value="Logout"/>
+</form>
+</body>
+</html>
