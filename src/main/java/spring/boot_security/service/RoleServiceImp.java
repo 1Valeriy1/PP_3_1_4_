@@ -1,13 +1,13 @@
 package spring.boot_security.service;
 
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import spring.boot_security.dao.RoleDao;
 import spring.boot_security.models.Role;
-import spring.boot_security.models.User;
 
 import java.util.HashSet;
 import java.util.Set;
-
+@Service()
 public class RoleServiceImp implements RoleService {
 
     private final RoleDao roleDao;
@@ -23,12 +23,8 @@ public class RoleServiceImp implements RoleService {
 
     @Override
     @Transactional
-    public Set<Role> setRoles() {
+    public Set<Role> getRoles() {
         return new HashSet(roleDao.findAll());
     }
 
-    @Override
-    public User getRoleByName(String role) {
-        return null;
-    }
 }

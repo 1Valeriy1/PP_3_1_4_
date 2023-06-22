@@ -6,29 +6,37 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import spring.boot_security.models.User;
+import spring.boot_security.service.RoleService;
 import spring.boot_security.service.UserService;
+
+import java.security.Principal;
 
 
 @Controller
 public class AdminController {
 
     private final UserService service;
+    private final RoleService roleService;
 
     @Autowired
-    public AdminController(UserService service) {
+    public AdminController(UserService service, RoleService roleService) {
         this.service = service;
+        this.roleService = roleService;
     }
 //таблица юзеров
     @GetMapping("/admin")
-    public String users(Model model){
+    public String users(Model model, Principal principal){
+        model.addAttribute("admin", service.getUserByName(principal.getName()));
         model.addAttribute("users", service.listUsers());
         model.addAttribute("user", new User());
+        model.addAttribute("roles", roleService.getRoles());
         return "/admin";
     }
 //сохранение юзера
     @GetMapping("/admin/add")
     public String add(Model model) {
         model.addAttribute("user", new User());
+        model.addAttribute("roles", roleService.getRoles());
         return "/admin/add";
     }
 

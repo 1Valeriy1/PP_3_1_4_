@@ -8,24 +8,61 @@
 <body>
 
 <div>
-  <h2>Save User</h2>
+  <h2>Add new User</h2>
+  <div class="row">
 
-  <form action="#" th:action="@{/admin/save}" th:object="${user}"
-        method="POST">
-    <input type="text" th:field="*{firstName}"
-           placeholder="Name" >
-    <input type="text" th:field="*{lastName}"
-           placeholder="LastName" >
-    <input type="text" th:field="*{email}"
-           placeholder="Email">
-    <input type="text" th:field="*{password}"
-           placeholder="Password">
-    <input type="text" th:field="*{roles}"
-           placeholder="Roles(id)">
+    <div class="col-sm">
+    </div>
+
+    <div class="col-sm" align="center">
+      <form action="#" th:action="@{/admin/save}" th:object="${user}"
+            method="POST">
+      <div class="form-group">
+        <label for="name">First Name</label></br>
+        <input type="text" class="form-control"
+               th:field="*{firstName}"
+               placeholder="Name" id = "name"></br>
+      </div>
+      <div class="form-group">
+        <label for="name">Last Name</label></br>
+        <input type="text" class="form-control"
+               th:field="*{lastName}"
+               placeholder="LastName" ></br>
+      </div>
+      <div class="form-group">
+        <label for="name">Email address</label></br>
+        <input type="text" class="form-control"
+               th:field="*{email}"
+               placeholder="Email"></br>
+      </div>
+      <div class="form-group">
+        <label for="name">Password</label></br>
+        <input type="text" class="form-control"
+               th:field="*{password}"
+               placeholder="Password"></br>
+      </div>
+      <div class="form-group">
+        <label for="name">Role</label>
+        <select multiple class="form-control" id="role">
+          <option th:each="role: ${roles}" th:value="${role.getId()}" >
+            <th:block th:text="${role.getAuthority()}">
+            </th:block>
+          </option>
+        </select>
+      </div>
+
+        <button type="submit" class="btn btn-success btn-lg" >Add new user</button>
+      </form>
+    </div>
+
+    <div class="col-sm">
+    </div>
+
+  </div>
 
 
-    <button type="submit" > Save User</button>
-  </form>
+
+
 
   <a th:href = "@{/admin}"> Back to User List</a>
 

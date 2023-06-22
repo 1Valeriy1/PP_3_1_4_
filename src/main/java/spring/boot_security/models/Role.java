@@ -10,6 +10,9 @@ import javax.persistence.*;
 @Table(name = "roles")
 public class Role implements GrantedAuthority {
 
+    public Role() {
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -19,6 +22,10 @@ public class Role implements GrantedAuthority {
     @Override
     public String getAuthority() {
         return role;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     @Override
