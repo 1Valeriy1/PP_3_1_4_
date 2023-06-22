@@ -1,70 +1,35 @@
-<!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <title>User</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
 <div>
-  <h2>Edit user</h2>
-  <div align="center">
+  <h2>Update User</h2>
+  <form id="formNewUser" name="formNewUser" th:align="center"
+        form action="#" th:action="@{/admin/update}" th:object="${user}"
+        method="POST">
+    <input type="hidden" name="_method" value="put">
 
-    <form id="formNewUser" name="formNewUser" th:align="center"
-          form action="#" th:action="@{/admin/update}" th:object="${user}"
-          method="POST">
-      <input type="hidden" name="_method" value="put">
-      <div class="form-group">
-        <label >Id</label></br>
-        <input type="text" class="form-view"
-               th:field="*{id}"
-               placeholder="ID"disabled></br>
-      </div>
-      <div class="form-group">
-        <label >First Name</label></br>
-        <input type="text" class="form-view"
-               th:field="*{firstName}"
-               placeholder="Name"></br>
-      </div>
-      <div class="form-group">
-        <label >Last Name</label></br>
-        <input type="text" class="form-view"
-               th:field="*{lastName}"
-               placeholder="LastName" ></br>
-      </div>
+    <input class="form-control" readonly type="number"
+           th:name="id" id="idEditUser"
+           th:value="${user.id}">
 
-      <div class="form-group">
-        <label>Age</label></br>
-        <input type="number" class="form-view"
-               th:field="*{age}"
-               placeholder="Age"></br>
-      </div>
+    <input type="text" th:field="*{firstName}"
+           placeholder="Name">
+    <input type="text" th:field="*{lastName}"
+           placeholder="LastName">
+    <input type="text" th:field="*{email}"
+           placeholder="Email">
+    <input type="text" th:field="*{password}"
+           placeholder="Password">
+    <input type="text" th:field="*{roles}"
+           placeholder="Roles">
 
-      <div class="form-group">
-        <label>Email address</label></br>
-        <input type="text" class="form-view"
-               th:field="*{email}"
-               placeholder="Email"></br>
-      </div>
-      <div class="form-group">
-        <label>Password</label></br>
-        <input type="password" class="form-view"
-               th:field="*{password}"
-               placeholder="Password"></br>
-      </div>
-      <div class="form-group">
-        <label>Role</label></br>
-        <select multiple class="form-view" name="roles" >
-          <option th:each="role: ${roles}" th:value="${role.getId()}" >
-            <th:block th:text="${role.getAuthority()}">
-            </th:block>
-          </option>
-        </select>
-      </div>
+    <button type="submit"> Update User </button>
 
-      <button type="submit" class="btn btn-primary btn-lg" >Edit user</button>
-    </form>
-  </div>
+  </form>
+
   <hr>
 
   <a th:href = "@{/admin}"> Back to User List</a>

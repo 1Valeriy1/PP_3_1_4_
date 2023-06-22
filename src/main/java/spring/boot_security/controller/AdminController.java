@@ -19,16 +19,16 @@ public class AdminController {
     private final RoleService roleService;
 
     @Autowired
-    public AdminController(UserService service, RoleService roleService) {
+    public AdminController(UserService service, RoleService roleService ) {
         this.service = service;
         this.roleService = roleService;
     }
 //таблица юзеров
     @GetMapping("/admin")
-    public String users(Model model, Principal principal){
+    public String users(Model model, Principal principal, @ModelAttribute("user") User user){
         model.addAttribute("admin", service.getUserByName(principal.getName()));
         model.addAttribute("users", service.listUsers());
-        model.addAttribute("user", new User());
+        model.addAttribute("newUser", new User());
         model.addAttribute("roles", roleService.getRoles());
         return "/admin";
     }
