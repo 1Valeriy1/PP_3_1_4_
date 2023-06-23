@@ -32,13 +32,6 @@ public class AdminController {
         model.addAttribute("roles", roleService.getRoles());
         return "/admin";
     }
-//сохранение юзера
-    @GetMapping("/admin/add")
-    public String add(Model model) {
-        model.addAttribute("user", new User());
-        model.addAttribute("roles", roleService.getRoles());
-        return "/admin/add";
-    }
 
     @PostMapping("/admin/save")
     public String save(@ModelAttribute("user") User user) {
@@ -46,18 +39,12 @@ public class AdminController {
         return "redirect:/admin";
     }
 //изменеие юзера
-    @PutMapping("/admin/update")
+    @PutMapping("/admin/update/{id}")
     public String update(@ModelAttribute("user") User user) {
         service.add(user);
         return "redirect:/admin";
     }
 
-// поиск по id юзера
-    @GetMapping("/admin/find/{id}")
-    public String find(@PathVariable("id") long id, Model model) {
-        model.addAttribute("user", service.getUserById(id));
-        return "/admin/update";
-    }
 // удаление юзера
     @DeleteMapping("/admin/delete/{id}")
     public String deleteUserById(@PathVariable("id") Long id){
