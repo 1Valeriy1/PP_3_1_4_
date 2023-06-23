@@ -24,6 +24,7 @@
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
     <filter-actions connection-id="c90a44da-53a3-4c86-8b44-41d53a266b77" dataset="mydbtest.users" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="c90a44da-53a3-4c86-8b44-41d53a266b77" dataset="mydbtest.roles" active-filter-id="" />
   </component>
   <component name="DBNavigator.Project.ObjectQuickFilterManager">
     <last-used-operator value="EQUAL" />
