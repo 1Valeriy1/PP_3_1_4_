@@ -151,11 +151,12 @@
                                                      </div>
 
                                                      <div class="form-group">
-                                                         <label>Age</label></br>
-                                                         <input type ="number" class="form-view"
+                                                         <label for="name">Age</label></br>
+                                                         <input type="number" class="form-view"
+                                                                th:type="number"
                                                                 th:name="age"
-                                                                th:type="text"
-                                                                th:value="${user.age}"></br>
+                                                                th:value="${user.age}"
+                                                                placeholder="Age"></br>
                                                      </div>
 
                                                      <div class="form-group">
