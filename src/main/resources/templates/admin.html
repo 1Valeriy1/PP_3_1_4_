@@ -12,8 +12,11 @@
 <header>
     <nav class="navbar navbar-expand-gl navbar-dark bg-dark">
         <a class="navbar-brand text-white"
-           th:text="|${admin.getEmail()} with roles: ${admin.getRoles()}|">
+           th:text="|${admin.getEmail()} with roles: |">
         </a>
+        <th:block th:each="admin : ${admin.getRoles()}">
+            <a th:text="${admin.getRoleWithoutPrefix()}" class="navbar-brand text-white"></a>
+        </th:block>
         <div class="nav ml-auto">
             <a th:href="@{/logout}" class="text-white-50 text-right">Logout</a>
         </div>
@@ -62,7 +65,9 @@
                                     <td th:text="${admin.getLastName()}"></td>
                                     <td th:text="${admin.getAge()}"></td>
                                     <td th:text="${admin.getUsername()}"></td>
-                                    <td th:text="${admin.getRoles()}"></td>
+                                    <td> <th:block th:each="admin : ${admin.getRoles()}">
+                                        <label th:text="${admin.getRoleWithoutPrefix()}"></label>
+                                    </th:block></td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -107,7 +112,9 @@
                                 <td th:utext="${user.getLastName()}">LastName</td>
                                 <td th:utext="${user.getAge()}">Age</td>
                                 <td th:utext="${user.getEmail()}">email</td>
-                                <td> <span th:text="${user.getRoles()}">roles</span></td>
+                                <td> <th:block th:each="msg : ${user.getRoles()}">
+                                    <label th:text="${msg.getRoleWithoutPrefix()}"></label>
+                                </th:block></td>
                                 <!--Edit-->
                                 <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#edit" th:data-target="${'#edit' + user.id}">
                                     Edit
@@ -179,7 +186,7 @@
                                                          <label>Role</label></br>
                                                          <select multiple class="form-control" name="roles" >
                                                              <option th:each="role: ${roles}" th:value="${role.getId()}" >
-                                                                 <th:block th:text="${role.getAuthority()}">
+                                                                 <th:block th:text="${role.getRoleWithoutPrefix()}">
                                                                  </th:block>
                                                              </option>
                                                          </select>
@@ -194,10 +201,6 @@
                                      </div>
                                      </form>
                                  </div>
-
-                                <!--<td><form th:method="GET" th:action="@{/admin/find/{id}(id=${user.getId()})}">
-                                    <input type="submit" class="btn btn-info" value="Update">
-                                </form></td>-->
 
                                 <!--DELETE-->
                                 <td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete" th:data-target="${'#delete' + user.id}">
@@ -254,8 +257,8 @@
                                                         <div class="form-group col-sm-6">
                                                             <label>Role</label></br>
                                                             <select multiple class="form-control" disabled >
-                                                                <option th:each="role: ${user.roles}">
-                                                                    <th:block th:text="${role}">
+                                                                <option th:each="role: ${roles}" th:value="${role.getId()}" >
+                                                                    <th:block th:text="${role.getRoleWithoutPrefix()}">
                                                                     </th:block>
                                                                 </option>
                                                             </select>
@@ -325,7 +328,7 @@
                                             <label for="name">Role</label>
                                             <select multiple class="form-control" name="roles" >
                                                 <option th:each="role: ${roles}" th:value="${role.getId()}" >
-                                                    <th:block th:text="${role.getAuthority()}">
+                                                    <th:block th:text="${role.getRoleWithoutPrefix()}">
                                                     </th:block>
                                                 </option>
                                             </select>

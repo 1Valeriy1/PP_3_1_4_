@@ -31,6 +31,12 @@ public class UserServiceImp implements UserDetailsService, UserService {
     public void add(User user) {
       userDao.save(user);
     }
+
+    @Override
+    @Transactional
+    public void update(User user) {
+        userDao.save(user);
+    }
     @Override
     public List<User> listUsers() {
       return userDao.findAll();

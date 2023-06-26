@@ -41,7 +41,7 @@ public class AdminController {
 //изменеие юзера
     @PutMapping("/admin/update/{id}")
     public String update(@ModelAttribute("user") User user) {
-        service.add(user);
+        service.update(user);
         return "redirect:/admin";
     }
 

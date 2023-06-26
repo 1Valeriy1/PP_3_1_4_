@@ -17,12 +17,13 @@ public class RoleServiceImp implements RoleService {
     }
 
     @Override
+    @Transactional
     public void add(Role role) {
         roleDao.save(role);
     }
 
     @Override
-    @Transactional
+
     public Set<Role> getRoles() {
         return new HashSet(roleDao.findAll());
     }

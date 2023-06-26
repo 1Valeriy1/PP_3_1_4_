@@ -12,8 +12,11 @@
 <header>
     <nav class="navbar navbar-expand-gl navbar-dark bg-dark">
         <a class="navbar-brand text-white"
-           th:text="|${user.getEmail()} with roles: ${user.getRoles()}|">
+           th:text="|${user.getEmail()} with roles: |">
         </a>
+        <th:block th:each="user : ${user.getRoles()}">
+            <a th:text="${user.getRoleWithoutPrefix()}" class="navbar-brand text-white"></a>
+        </th:block>
         <div class="nav ml-auto">
             <a th:href="@{/logout}" class="text-white-50 text-right">Logout</a>
         </div>
@@ -57,7 +60,9 @@
                                         <td th:text="${user.getFirstName()}"></td>
                                         <td th:text="${user.getLastName()}"></td>
                                         <td th:text="${user.getUsername()}"></td>
-                                    <td th:text="${user.getRoles()}"></td>
+                                        <td> <th:block th:each="user : ${user.getRoles()}">
+                                            <label th:text="${user.getRoleWithoutPrefix()}"></label>
+                                        </th:block></td>
                                 </tr>
                                 </tbody>
                             </table>

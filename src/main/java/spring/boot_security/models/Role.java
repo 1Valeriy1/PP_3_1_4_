@@ -24,6 +24,10 @@ public class Role implements GrantedAuthority {
         return role;
     }
 
+    public String getRoleWithoutPrefix() {
+        return role.substring("ROLE_".length());
+    }
+
     public Long getId() {
         return id;
     }

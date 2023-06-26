@@ -45,7 +45,7 @@
         <label for="name">Role</label>
         <select multiple class="form-control" id="role">
           <option th:each="role: ${roles}" th:value="${role.getId()}" >
-            <th:block th:text="${role.getAuthority()}">
+            <th:block th:text="${role.getRoleWithoutPrefix()}">
             </th:block>
           </option>
         </select>
