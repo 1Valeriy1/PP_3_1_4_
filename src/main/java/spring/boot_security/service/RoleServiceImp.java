@@ -23,7 +23,6 @@ public class RoleServiceImp implements RoleService {
     }
 
     @Override
-
     public Set<Role> getRoles() {
         return new HashSet(roleDao.findAll());
     }
